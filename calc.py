@@ -6,6 +6,8 @@ https://github.com/kalexal-kaa/python-projects/tree/main/projects
 # calc.py - a Python calculator
 from tkinter import *
 
+ppady=10
+
 # the main class
 class Calc():
     def __init__(self):
@@ -100,57 +102,63 @@ calc.grid()
 root.title("Калькулятор")
 root.resizable(width=False, height=False)
 text_box = Entry(calc, justify=RIGHT)
-text_box.grid(row = 0, column = 0, columnspan = 3, pady = 5)
+# text_box.grid(row = 0, column = 0, columnspan = 3, pady = ppady)
+text_box.grid(row = 0, column = 0, columnspan = 3, pady = ppady)
 text_box.insert(0, "0")
 
 # make the buttons
 numbers = "789456123"
 i = 0
+# Отдельно прямоугольный блок цифр numbers
 bttn = []
 for j in range(1,4):
     for k in range(3):
         bttn.append(My_Btn(calc, text = numbers[i]))
-        bttn[i].grid(row = j, column = k, pady = 5)
+        bttn[i].grid(row = j, column = k, pady = ppady)
         bttn[i].btn_cmd(numbers[i])
         i += 1
+# Недостающая цифра == 0
 bttn_0 = Button(calc, text = "0")
 bttn_0["command"] = lambda: sum1.num_press(0)
-bttn_0.grid(row = 4, column = 1, pady = 5)
+bttn_0.grid(row = 4, column = 1, pady = ppady)
 
 bttn_div = Button(calc, text = chr(247))
 bttn_div["command"] = lambda: sum1.operation("divide")
-bttn_div.grid(row = 1, column = 3, pady = 5)
+bttn_div.grid(row = 1, column = 3, pady = ppady)
 
 bttn_mult = Button(calc, text = "x")
 bttn_mult["command"] = lambda: sum1.operation("times")
-bttn_mult.grid(row = 2, column = 3, pady = 5)
+bttn_mult.grid(row = 2, column = 3, pady = ppady)
 
 minus = Button(calc, text = "-")
 minus["command"] = lambda: sum1.operation("minus")
-minus.grid(row = 3, column = 3, pady = 5)
+minus.grid(row = 3, column = 3, pady = ppady)
 
 point = Button(calc, text = ".")
 point["command"] = lambda: sum1.num_press(".")
-point.grid(row = 4, column = 0, pady = 5)
+point.grid(row = 4, column = 0, pady = ppady)
 
 add = Button(calc, text = "+")
 add["command"] = lambda: sum1.operation("add")
-add.grid(row = 4, column = 3, pady = 5)
+add.grid(row = 4, column = 3, pady = ppady)
 
+# Смена знака на противоположный
 neg= Button(calc, text = "+/-")
 neg["command"] = sum1.sign
-neg.grid(row = 5, column = 0, pady = 5)
+neg.grid(row = 5, column = 0, pady = ppady)
 
+# Очистка строки        
 clear = Button(calc, text = "C")
 clear["command"] = sum1.cancel
-clear.grid(row = 5, column = 1, pady = 5)
+clear.grid(row = 5, column = 1, pady = ppady)
 
+# Очистка всего
 all_clear = Button(calc, text = "AC")
 all_clear["command"] = sum1.all_cancel
-all_clear.grid(row = 5, column = 2, pady = 5)
+all_clear.grid(row = 5, column = 2, pady = ppady)
 
 equals = Button(calc, text = "=")
 equals["command"] = sum1.calc_total
-equals.grid(row = 5, column = 3, pady = 5)
+equals.grid(row = 5, column = 3, pady = ppady)
 
 root.mainloop()
